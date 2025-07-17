@@ -31,3 +31,13 @@ jobs:
     - name: Publish to GitHub Packages
       if: github.event.release.prerelease == true
       run: dotnet nuget push "bin/Release/*.nupkg" --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
+    - name: Log URL
+      run: |
+        PACKAGE_NAME=$(ls bin/Release/*.nupkg | head -n 1 | xargs -n 1 basename | sed 's/\(.*\)\.[0-9].*\.nupkg/\1/')
+        if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+          echo "Package published to GitHub Packages:"
+          echo "https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/packages"
+        else
+          echo "Package published to NuGet.org:"
+          echo "https://www.nuget.org/packages/${PACKAGE_NAME}/"
+        fi
