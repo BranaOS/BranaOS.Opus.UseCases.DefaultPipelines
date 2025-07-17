@@ -33,7 +33,9 @@ jobs:
       run: dotnet nuget push "bin/Release/*.nupkg" --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
     - name: Log URL
       run: |
-        PACKAGE_NAME=$(ls bin/Release/*.nupkg | head -n 1 | xargs -n 1 basename | sed 's/\(.*\)\.[0-9].*\.nupkg/\1/')
+        PACKAGE_NAME=$(ls bin/Release/*.nupkg | head -n 1 | xargs -n 1 basename)
+        VERSION="${{ github.event.release.tag_name }}"
+        PACKAGE_NAME="${PACKAGE_NAME%.$VERSION.nupkg}"
         if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
           echo "Package published to GitHub Packages:"
           echo "https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/packages"
