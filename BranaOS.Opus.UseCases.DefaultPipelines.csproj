@@ -4,12 +4,10 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>BranaOS.Opus.UseCases</PackageId>
-    <Version>1.0.0</Version>
+    <PackageId>BranaOS.Opus.UseCases.DefaultPipelines</PackageId>
     <Authors>Brennon Oliveira</Authors>
     <Company>BranaOS</Company>
     <Product>Opus UseCases Default Pipelines</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Copyright>Direitos autorais (c) Brennon Oliveira 2025</Copyright>
@@ -25,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BranaOS.Opus.Core" Version="1.0.2" />
+    <PackageReference Include="BranaOS.Opus.Core" Version="1.0.5" />
+    <PackageReference Include="BranaOS.Opus.UseCases" Version="1.0.3" />
+    <PackageReference Include="FluentValidation" Version="8.2.3" />
   </ItemGroup>
 
 </Project>
